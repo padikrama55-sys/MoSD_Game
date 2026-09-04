@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#702ca4">
+  <meta name="description" content="Game belajar interaktif untuk anak TK: warna, hitung, bentuk, pola, dan ingatan.">
+  <title>Petualangan Pintu Bintang</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="spark spark-1">✦</span>
+    <span class="spark spark-2">●</span>
+    <span class="spark spark-3">✦</span>
+    <span class="spark spark-4">▲</span>
+    <span class="cloud cloud-1"></span>
+    <span class="cloud cloud-2"></span>
+  </div>
+
+  <main id="app" class="app-shell">
+
+    <!-- HALAMAN AWAL -->
+    <section id="startScreen" class="screen start-screen" aria-labelledby="gameTitle">
+      <button
+        id="soundStart"
+        class="sound-button"
+        type="button"
+        aria-label="Matikan suara"
+        aria-pressed="true"
+      >
+        <span aria-hidden="true">🔊</span>
+        <span class="sound-label">Suara</span>
+      </button>
+
+      <div class="start-copy">
+        <p class="eyebrow">Game belajar anak TK</p>
+
+        <h1 id="gameTitle">
+          Petualangan<br>
+          <span>Pintu Bintang!</span>
+        </h1>
+
+        <p class="welcome">
+          Halo, Sahabat Cilik! Lima pintu ajaib menunggu untuk dibuka.
+        </p>
+
+        <div class="skill-pills" aria-label="Isi permainan">
+          <span>🎨 Warna</span>
+          <span>🔢 Hitung</span>
+          <span>🔷 Bentuk</span>
+          <span>🧩 Pola</span>
+          <span>🧠 Ingatan</span>
+        </div>
+
+        <button id="startButton" class="primary-button wiggle" type="button">
+          <span>Ayo Main!</span>
+          <span aria-hidden="true">🚀</span>
+        </button>
+
+        <p class="tiny-note">
+          Tidak ada waktu habis. Main santai, ya!
+        </p>
+      </div>
+
+      <div class="hero-art" aria-label="Para karakter sahabat dalam permainan">
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+
+        <img
+          src="assets/images/karakter-all-star.jpg"
+          alt="Kumpulan karakter robot lucu berwarna-warni"
+          width="2048"
+          height="1149"
+        >
+      </div>
+
+      <div class="character-strip" aria-label="Teman yang menemani bermain">
+        <div class="character-chip">
+          <img src="assets/images/aora.jpg" alt="Aora">
+          <span>Aora</span>
+        </div>
+
+        <div class="character-chip">
+          <img src="assets/images/pout.jpg" alt="Pout">
+          <span>Pout</span>
+        </div>
+
+        <div class="character-chip">
+          <img src="assets/images/star.jpg" alt="Star">
+          <span>Star</span>
+        </div>
+
+        <div class="character-chip">
+          <img src="assets/images/power.jpg" alt="Power">
+          <span>Power</span>
+        </div>
+
+        <div class="character-chip">
+          <img src="assets/images/komi.jpg" alt="Komi">
+          <span>Komi</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HALAMAN PERMAINAN -->
+    <section
+      id="gameScreen"
+      class="screen game-screen hidden"
+      aria-labelledby="missionTitle"
+    >
+      <header class="game-header">
+        <button
+          id="homeButton"
+          class="icon-button"
+          type="button"
+          aria-label="Kembali ke halaman awal"
+        >
+          ⌂
+        </button>
+
+        <div class="progress-wrap">
+          <div class="progress-copy">
+            <span id="levelLabel">Misi 1 dari 5</span>
+            <span id="starCount">⭐ 0</span>
+          </div>
+
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-label="Kemajuan permainan"
+            aria-valuemin="0"
+            aria-valuemax="5"
+            aria-valuenow="0"
+          >
+            <span id="progressBar"></span>
+          </div>
+        </div>
+
+        <button
+          id="soundGame"
+          class="icon-button"
+          type="button"
+          aria-label="Matikan suara"
+          aria-pressed="true"
+        >
+          🔊
+        </button>
+      </header>
+
+      <div class="door-map" aria-label="Peta lima misi">
+        <span class="map-dot current">1</span>
+        <span class="map-line"></span>
+
+        <span class="map-dot">2</span>
+        <span class="map-line"></span>
+
+        <span class="map-dot">3</span>
+        <span class="map-line"></span>
+
+        <span class="map-dot">4</span>
+        <span class="map-line"></span>
+
+        <span class="map-dot">5</span>
+      </div>
+
+      <div class="mission-layout">
+        <aside class="guide-card">
+          <div class="guide-bubble" id="guideBubble">
+            Yuk, kita coba!
+          </div>
+
+          <img
+            id="guideImage"
+            src="assets/images/aora.jpg"
+            alt="Aora memberi petunjuk"
+            width="1145"
+            height="1370"
+          >
+
+          <p id="guideName">Aora</p>
+
+          <button id="repeatButton" class="repeat-button" type="button">
+            <span aria-hidden="true">🔊</span>
+            Dengarkan lagi
+          </button>
+        </aside>
+
+        <section class="activity-card" aria-live="polite">
+          <p id="missionTag" class="mission-tag">Misi Warna</p>
+
+          <h2 id="missionTitle">
+            Pilih warna yang sama!
+          </h2>
+
+          <p id="missionInstruction" class="mission-instruction">
+            Ketuk jawabanmu.
+          </p>
+
+          <div id="activityArea" class="activity-area"></div>
+
+          <div
+            id="feedback"
+            class="feedback"
+            role="status"
+            aria-live="assertive"
+          ></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- HALAMAN SELESAI -->
+    <section
+      id="finishScreen"
+      class="screen finish-screen hidden"
+      aria-labelledby="finishTitle"
+    >
+      <div
+        id="confettiLayer"
+        class="confetti-layer"
+        aria-hidden="true"
+      ></div>
+
+      <p class="eyebrow">Semua pintu terbuka!</p>
+
+      <h2 id="finishTitle">
+        Hebat Sekali! 🎉
+      </h2>
+
+      <p>
+        Kamu sudah menolong semua teman dan mengumpulkan
+      </p>
+
+      <div class="big-stars" aria-label="Lima bintang">
+        ⭐ ⭐ ⭐ ⭐ ⭐
+      </div>
+
+      <div class="finish-image-wrap">
+        <img
+          src="assets/images/karakter-all-star.jpg"
+          alt="Semua karakter merayakan keberhasilan"
+          width="2048"
+          height="1149"
+        >
+      </div>
+
+      <p class="finish-message">
+        Aora, Pout, Star, Power, dan Komi bangga padamu!
+      </p>
+
+      <div class="finish-actions">
+        <button id="playAgainButton" class="primary-button" type="button">
+          <span>Main Lagi</span>
+          <span aria-hidden="true">↻</span>
+        </button>
+
+        <button
+          id="meetFriendsButton"
+          class="secondary-button"
+          type="button"
+        >
+          Lihat Semua Teman
+        </button>
+      </div>
+
+      <div
+        id="friendsPanel"
+        class="friends-panel hidden"
+        aria-label="Semua karakter"
+      >
+        <div>
+          <img src="assets/images/aluna.jpg" alt="Aluna">
+          <span>Aluna</span>
+        </div>
+
+        <div>
+          <img src="assets/images/aora.jpg" alt="Aora">
+          <span>Aora</span>
+        </div>
+
+        <div>
+          <img src="assets/images/ebru.jpg" alt="Ebru">
+          <span>Ebru</span>
+        </div>
+
+        <div>
+          <img src="assets/images/gale.jpg" alt="Gale">
+          <span>Gale</span>
+        </div>
+
+        <div>
+          <img src="assets/images/komi.jpg" alt="Komi">
+          <span>Komi</span>
+        </div>
+
+        <div>
+          <img src="assets/images/logi.jpg" alt="Logi">
+          <span>Logi</span>
+        </div>
+
+        <div>
+          <img src="assets/images/pout.jpg" alt="Pout">
+          <span>Pout</span>
+        </div>
+
+        <div>
+          <img src="assets/images/power.jpg" alt="Power">
+          <span>Power</span>
+        </div>
+
+        <div>
+          <img src="assets/images/star.jpg" alt="Star">
+          <span>Star</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="celebration" class="celebration hidden" aria-hidden="true">
+    <div class="celebration-star">⭐</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
